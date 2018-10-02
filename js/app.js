@@ -1,8 +1,6 @@
 $(function() {
-  console.log(1);
   formInit();
 });
-console.log(2);
 
 function formInit() {
   eventSet();
@@ -18,9 +16,29 @@ function formInit() {
 
 function eventSet() {
   $("#btnSetNotification").on("click", checkNotificationStatus);
+
   $("#btnShowMsg").on("click", function() {
     if (checkNotificationStatus() == true) {
       showNotification("提示", "測試是否正常顯示");
+    }
+  });
+
+  //訂閱
+  $("#btnSubscription").on("click", function() {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("sw.js")
+        .then(reg => {
+          // registration worked
+          console.log(
+            "[Service Worker] Registration succeeded. Scope is " + reg.scope
+          );
+          subscribeUser(reg);
+        })
+        .catch(error => {
+          // registration failed
+          console.log("[Service Worker] Registration failed with " + error);
+        });
     }
   });
 }

@@ -1,0 +1,15 @@
+{
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "web-push": "web-push",
+    "push": "./server/push.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "firebase-admin": "~5.4.2",
+    "firebase-functions": "^0.7.1",
+    "web-push": "^3.3.3"
+  },
+  "private": true
+}
